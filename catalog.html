@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог</title>
   </head>
   <body leftmargin="30" rightmargin="30">
     <header>
+      <a id="#"></a>
       <nav>
         <ul type="none">
           <li><a href="index.html">Главная</a></li>
@@ -14,105 +15,150 @@
         </ul>
       </nav>
     </header>
-    <details>
-      <summary>График</summary>
-      <form action="построить_график" method="post">
-        <table border="1" cellspacing="0" cellpadding="5">
-          <tr>
-            <th>Значение по оси OX</th>
-            <th>Результат</th>
-          </tr>
-          <tbody>
-            <tr>
-              <td>
-                <input type="radio" name="ox_filter" value="genre_1" /> Жанр
-                <br />
-                <input type="radio" name="ox_filter" value="country_1" /> Страна
-                <br />
-                <input type="radio" name="ox_filter" value="year_1" /> Год
-              </td>
-              <td>
-                <input type="checkbox" name="result" value="1" />
-                Минимальная продолжительность<br />
-                <input type="checkbox" name="result" value="2" />
-                Максимальная продолжительность<br />
-                <input type="checkbox" name="result" value="3" /> Количество
-                фильмов
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <input type="submit" value="Построить" />
-      </form>
-    </details>
+    <form action="построить_график" method="post" id="graph-form">
+      <details>
+        <summary>График</summary>
+        <div>
+          <b>Значение по оси OX:</b>
+          <br>
+          <input type="radio" name="ox_filter" value="genre_1" id="ox_genre">
+          <label for="ox_genre">Жанр</label>
+          <br>
+          <input
+            type="radio"
+            name="ox_filter"
+            value="country_1"
+            id="ox_country"
+          >
+          <label for="ox_country">Страна</label>
+          <br>
+          <input type="radio" name="ox_filter" value="year_1" id="ox_year">
+          <label for="ox_year">Год</label>
+        </div>
+
+        <div>
+          <b>Результат:</b>
+          <br>
+          <input type="checkbox" name="result" value="1" id="result_min">
+          <label for="result_min">Минимальная продолжительность</label>
+          <br>
+          <input type="checkbox" name="result" value="2" id="result_max">
+          <label for="result_max">Максимальная продолжительность</label>
+          <br>
+          <input type="checkbox" name="result" value="3" id="result_count">
+          <label for="result_count">Количество фильмов</label>
+        </div>
+        <input type="submit" value="Построить график" >
+      </details>
+    </form>
     <p>Здесь будет график</p>
-    <details>
-      <summary>Фильтр</summary>
-      <form action="фильтр">
-        <p>Название: <input type="text" name="name_2" /></p>
-        <p>Жанр: <input type="text" name="genre_2" /></p>
-        <p>Страна: <input type="text" name="country_2" /></p>
+    <form action="фильтр" id="filter-form">
+      <details>
+        <summary>Фильтр</summary>
+
         <p>
-          Год: от <input type="number" name="year_min_2" min="1888" /> до
-          <input type="number" name="year_max_2" max="2025" />
+          <label for="name_input">Название:</label>
+          <input type="text" name="name_2" id="name_input">
         </p>
         <p>
-          Продолжительность (мин): от
-          <input type="number" name="year_min_2" min="1" /> до
-          <input type="text" name="year_max_2" />
+          <label for="genre_input">Жанр:</label>
+          <input type="text" name="genre_2" id="genre_input">
         </p>
-        <input type="submit" value="Найти" />
-      </form>
-    </details>
-    <details>
-      <summary>Сортировка</summary>
-      <form action="сортировка">
         <p>
-          Первый уровень:
-          <select name="first_filter">
+          <label for="country_input">Страна:</label>
+          <input type="text" name="country_2" id="country_input">
+        </p>
+        <p>
+          <label for="year_min_input">Год: от</label>
+          <input
+            type="number"
+            name="year_min_2"
+            min="1888"
+            id="year_min_input"
+          >
+          до
+          <input
+            type="number"
+            name="year_max_2"
+            max="2025"
+            id="year_max_input"
+          >
+        </p>
+        <p>
+          <label for="duration_min_input">Продолжительность (мин): от</label>
+          <input
+            type="number"
+            name="duration_min_2"
+            min="1"
+            id="duration_min_input">
+          до
+          <input type="number" name="duration_max_2" id="duration_max_input">
+        </p>
+        <input type="submit" value="Найти">
+      </details>
+    </form>
+    <form action="сортировка" id="sort-form">
+      <details>
+        <summary>Сортировка</summary>
+
+        <p>
+          <label for="first_filter">Первый уровень:</label>
+          <select name="first_filter" id="first_filter">
             <option value="0">Нет</option>
             <option value="1">Название</option>
             <option value="2">Год</option>
             <option value="3">Продолжительность</option>
+            <option value="4">Страна</option>
+            <option value="5">Жанр</option>
           </select>
-          по убыванию?<input
+          <input
             type="checkbox"
             name="first_filter_down"
             value="1"
-          />
+            id="first_filter_down"
+          >
+          <label for="first_filter_down">по убыванию?</label>
         </p>
         <p>
-          Второй уровень:
-          <select name="second_filter">
+          <label for="second_filter">Второй уровень:</label>
+          <select name="second_filter" id="second_filter">
             <option value="0">Нет</option>
             <option value="1">Название</option>
             <option value="2">Год</option>
             <option value="3">Продолжительность</option>
+            <option value="4">Страна</option>
+            <option value="5">Жанр</option>
           </select>
-          по убыванию?<input
+          <input
             type="checkbox"
             name="second_filter_down"
             value="1"
-          />
+            id="second_filter_down"
+          >
+          <label for="second_filter_down">по убыванию?</label>
         </p>
         <p>
-          Третий уровень:
-          <select name="third_filter">
+          <label for="third_filter">Третий уровень:</label>
+          <select name="third_filter" id="third_filter">
             <option value="0">Нет</option>
             <option value="1">Название</option>
             <option value="2">Год</option>
             <option value="3">Продолжительность</option>
+            <option value="4">Страна</option>
+            <option value="5">Жанр</option>
           </select>
-          по убыванию?<input
+          <input
             type="checkbox"
             name="third_filter_down"
             value="1"
-          />
+            id="third_filter_down"
+          >
+          <label for="third_filter_down">по убыванию?</label>
         </p>
 
-        <input type="submit" value="Сортировать" />
-      </form>
-    </details>
+        <input type="submit" value="Сортировать" >
+      </details>
+    </form>
     <table border="1" cellspacing="0" cellpadding="5">
       <thead>
         <tr>
